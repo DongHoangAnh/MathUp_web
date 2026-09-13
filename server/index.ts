@@ -61,9 +61,8 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000 for Replit
-  // this serves both the API and the client.
-  const port = 5000;
+  // Serve on process.env.PORT (Render, Heroku, etc.) or fallback to 5000 (Replit, local)
+  const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 5000;
   const host = '0.0.0.0';
 
   server.listen(port, host, () => {
